@@ -1,52 +1,38 @@
-// import { useState } from 'react';
-import { Text } from '@mantine/core';
-import { Dropzone, FileWithPath } from '@mantine/dropzone';
+import { Dropzone } from '@mantine/dropzone';
 import React from 'react';
-import { Accept } from './Types';
-import { FileRejection } from 'react-dropzone';
-
-export interface IDropzoneComponentProps {
-  dropzoneLabel: string;
-  acceptedUpload(acceptedFile: FileWithPath[]): void;
-  rejectedUpload(rejectedFile: FileRejection[]): void;
-  acceptFiles: Accept | string[] | undefined;
-}
+import { IDropzoneComponentProps } from './Models';
 
 export const DropzoneComponent: React.FC<IDropzoneComponentProps> = props => {
-  // const [files, setFiles] = useState<FileWithPath[]>([]);
-
-  // const previews = files.map((file, index) => {
-  //   const imageUrl = URL.createObjectURL(file);
-
-  //   return (
-  //     <Image
-  //       key={index}
-  //       src={imageUrl}
-  //       imageProps={{ onLoad: () => URL.revokeObjectURL(imageUrl) }}
-  //     />
-  //   );
-  // });
-  // const isValidType = () =>{
-  //   if(props.acceptFiles)
-  // }
-
   return (
     <div>
       <Dropzone
         accept={props.acceptFiles}
-        onDrop={props.acceptedUpload}
+        onDrop={props.onDrop}
         onReject={props.rejectedUpload}
+        maxSize={props.maxSize ?? 2 * 1024 ** 2}
+        maxFiles={props.maxFiles ?? 1}
+        padding={props.padding ?? undefined}
+        radius={props.radius ?? undefined}
+        disabled={props.disabled ?? undefined}
+        loading={props.loading ?? undefined}
+        openRef={props.openRef ?? undefined}
+        multiple={props.multiple ?? undefined}
+        name={props.name ?? undefined}
+        activateOnClick={props.activateOnClick ?? true}
+        activateOnDrag={props.activateOnDrag ?? true}
+        activateOnKeyboard={props.activateOnKeyboard ?? true}
+        dragEventsBubbling={props.dragEventsBubbling ?? true}
+        autoFocus={props.autoFocus ?? false}
+        onDragEnter={props.onDragEnter ?? undefined}
+        onDragLeave={props.onDragLeave ?? undefined}
+        onDragOver={props.onDragOver ?? undefined}
+        onFileDialogCancel={props.onFileDialogCancel ?? undefined}
+        onFileDialogOpen={props.onFileDialogOpen ?? undefined}
+        preventDropOnDocument={props.preventDropOnDocument ?? true}
+        useFsAccessApi={props.useFsAccessApi ?? false}
       >
-        <Text align="center">{props.dropzoneLabel}</Text>
+        {props.children}
       </Dropzone>
-
-      {/* <SimpleGrid
-        cols={4}
-        breakpoints={[{ maxWidth: 'sm', cols: 1 }]}
-        mt={previews.length > 0 ? 'xl' : 0}
-      >
-        {previews}
-      </SimpleGrid> */}
     </div>
   );
 };
