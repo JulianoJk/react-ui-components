@@ -1,10 +1,6 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import {
-  DropzoneComponent,
-  IDropzoneComponentProps,
-  MIME_TYPES,
-} from '../src/index';
+import { DropzoneComponent, IDropzoneComponentProps } from '../src/index';
 
 const meta: Meta = {
   title: 'Dropzone',
@@ -19,6 +15,13 @@ export default meta;
 const Template: Story<IDropzoneComponentProps> = args => (
   <DropzoneComponent {...args} />
 );
+const images = [
+  'image/png',
+  'image/gif',
+  'image/jpeg',
+  'image/svg+xml',
+  'image/webp',
+];
 
 // By passing using the Args format for exported stories, you can control the props for a component for reuse in a test
 // https://storybook.js.org/docs/react/workflows/unit-testing
@@ -32,6 +35,6 @@ Default.args = {
   rejectedUpload: () => {
     console.log('rejected!');
   },
-  acceptFiles: ['image/png'],
-  uploadType: 'image',
+  acceptFiles: images,
+  this: 'image',
 };
