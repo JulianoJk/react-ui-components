@@ -28,13 +28,12 @@ const images = [
 export const Default = Template.bind({});
 
 Default.args = {
-  dropzoneLabel: 'DROP IMAGES HER',
-  acceptedUpload: file => {
-    console.log('ACCEPTER');
+  dropzoneLabel: 'DROP IMAGES HERE',
+  acceptedUpload: acceptedFile => {
+    console.log(acceptedFile);
   },
-  rejectedUpload: () => {
-    console.log('rejected!');
+  rejectedUpload: rejectedFile => {
+    console.log(rejectedFile);
   },
-  acceptFiles: images,
-  this: 'image',
+  acceptFiles: "application/pdf",
 };

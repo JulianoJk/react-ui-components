@@ -3,11 +3,12 @@ import { Text } from '@mantine/core';
 import { Dropzone, FileWithPath } from '@mantine/dropzone';
 import React from 'react';
 import { Accept } from './Types';
+import { FileRejection } from 'react-dropzone';
 
 export interface IDropzoneComponentProps {
   dropzoneLabel: string;
-  acceptedUpload(file: FileWithPath[]): void;
-  rejectedUpload(): void;
+  acceptedUpload(acceptedFile: FileWithPath[]): void;
+  rejectedUpload(rejectedFile: FileRejection[]): void;
   acceptFiles: Accept | string[] | undefined;
 }
 
